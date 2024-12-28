@@ -7,15 +7,15 @@
         <link rel="stylesheet" href="styles.css">
 
     </head>
-    <body class="flex flex-col justify-center min-h-screen w-screen bg-gray-950 text-gray-300 p-4">
-        <div class="flex rounded-t-3xl flex-col p-8 pt-16 gap-4 md:max-w-screen-md w-full bg-gray-800 self-center border border-gray-600 shadow-lg">
-            <div class="flex items-center justify-end h-24 w-full bg-slate-950 p-4 rounded-md border border-gray-600 shadow-sm">
-                <p id="result" class="text-right text-5xl font-mono transform transition duration-150 ease-in-out hover:scale-110">0</p>
+    <body class="flex flex-col justify-center min-h-screen w-screen bg-black dark:text-gray-300 p-4 subpixel-antialiased">
+        <div class="flex rounded-t-3xl flex-col p-8 pt-16 gap-4 md:max-w-screen-md w-full bg-white dark:bg-zinc-700 self-center border border-gray-600 shadow-lg">
+            <div class="flex items-center justify-end h-24 w-full dark:bg-zinc-950 p-4 rounded-md border border-gray-600 shadow-sm">
+                <p id="result" class="text-right text-5xl font-mono transform transition duration-150 ease-in-out  ">0</p>
             </div>
-            <div class="flex items-center justify-end h-16 w-full bg-slate-900 p-4 rounded-md border border-gray-600 shadow-sm">
+            <div class="flex items-center justify-end h-16 w-full dark:bg-zinc-900 p-4 rounded-md border border-gray-600 shadow-sm">
                 <input 
                     id="expression" 
-                    class="w-full text-right bg-transparent outline-none text-xl font-serif text-gray-400 shadow-sm rounded-md"
+                    class="w-full text-right bg-transparent outline-none text-xl font-serif dark:text-gray-400 rounded-md"
                     type="text" 
                     placeholder="Enter expression"
                     oninput="updateExpression(this.value)" 
@@ -24,54 +24,48 @@
             </div>
         </div>
                     
-        <div class="flex flex-col md:flex-row rounded-b-3xl gap-4 md:gap-2 md:max-w-screen-md w-full h-full md:h-96 p-8 px-12 bg-gray-800 self-center border border-gray-600 shadow-lg">
-            <!-- Add this button for mobile devices -->
-            <button id="toggleHistory" class="md:hidden text-gray-300 p-2 rounded-md border border-gray-600 shadow-sm transition transform duration-150 ease-in-out hover:scale-105">
-                Memory
-            </button>
-            <div class="flex w-full">   
-                <div id="numbers" class="grid grid-cols-4 grid-rows-5 h-full gap-2 font-serif text-3xl w-full md:w-auto">
+        <div class="flex flex-col-reverse md:flex-row rounded-b-3xl gap-6 md:gap-2 md:max-w-screen-md w-full h-full md:h-96 p-8 px-12 bg-white text-gray-300 dark:bg-zinc-700 self-center border border-gray-600 shadow-lg">
+            <div class="flex w-full ">   
+                <div id="numbers" class="grid grid-cols-4 grid-rows-5 h-full gap-2 font-serif text-4xl w-full md:w-auto">
                     <div class="flex aspect-square">
-                        <button onclick="appendValue('(')" class="w-1/2 bg-gray-900 border border-gray-600 h-full rounded-s-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> (   </button>
-                        <button onclick="appendValue(')')" class="w-1/2 bg-gray-900 border border-gray-600 h-full rounded-e-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400">   ) </button>
+                        <button onclick="appendValue('(')" class="w-1/2 bg-zinc-900 border border-gray-600 h-full rounded-s-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> (   </button>
+                        <button onclick="appendValue(')')" class="w-1/2 bg-zinc-900 border border-gray-600 h-full rounded-e-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400">   ) </button>
                     </div>
-                    <button onclick="appendValue('%')" class="bg-gray-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> % </button>
-                    <button onclick="appendValue('/')" class="bg-gray-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> / </button>
-                    <button onclick="backspace()" class="bg-gray-900 border border-gray-600 text-2xl aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> &larr; </button>
+                    <button onclick="appendValue('%')" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> % </button>
+                    <button onclick="appendValue('/')" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> / </button>
+                    <button onclick="backspace()" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> &larr; </button>
 
-                    <button onclick="appendValue('1')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 1 </button>
-                    <button onclick="appendValue('2')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 2 </button>
-                    <button onclick="appendValue('3')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 3 </button>
+                    <button onclick="appendValue('1')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 1 </button>
+                    <button onclick="appendValue('2')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 2 </button>
+                    <button onclick="appendValue('3')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 3 </button>
                     
-                    <button onclick="appendValue('*')" class="bg-gray-900 border border-gray-600 text-2xl aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> * </button>
-                    <button onclick="appendValue('4')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 4 </button>
-                    <button onclick="appendValue('5')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 5 </button>
-                    <button onclick="appendValue('6')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 6 </button>
+                    <button onclick="appendValue('*')" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> * </button>
+                    <button onclick="appendValue('4')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 4 </button>
+                    <button onclick="appendValue('5')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 5 </button>
+                    <button onclick="appendValue('6')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 6 </button>
                    
-                    <button onclick="appendValue('+')" class="bg-gray-900 border border-gray-600 text-2xl aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> + </button>
-                    <button onclick="appendValue('7')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 7 </button>
-                    <button onclick="appendValue('8')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 8 </button>
-                    <button onclick="appendValue('9')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 9 </button>
-                    <button onclick="appendValue('-')" class="bg-gray-900 border border-gray-600 text-2xl aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> - </button>
+                    <button onclick="appendValue('+')" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> + </button>
+                    <button onclick="appendValue('7')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 7 </button>
+                    <button onclick="appendValue('8')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 8 </button>
+                    <button onclick="appendValue('9')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 9 </button>
+                    <button onclick="appendValue('-')" class="bg-zinc-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> - </button>
 
-                    <button onclick="clearDisplay()" class="bg-red-700 border border-red-800 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400"> AC </button>
-                    <button onclick="appendValue('0')" class="bg-gray-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 0 </button>
-                    <button onclick="appendValue('.')" class="bg-gray-800 border border-gray-500 text-2xl aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> . </button>
-                    <button onclick="saveResult()" class="bg-black border border-gray-300 text-2xl aspect-square h-full rounded-2xl transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400"> = </button>
+                    <button onclick="clearDisplay()" class="bg-red-600 dark:bg-red-700 text-white border border-red-800 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400"> AC </button>
+                    <button onclick="appendValue('0')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> 0 </button>
+                    <button onclick="appendValue('.')" class="bg-zinc-800 border border-gray-500 aspect-square h-full rounded-md transform transition duration-150 ease-in-out   hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-gray-400"> . </button>
+                    <button onclick="saveResult()" class="bg-black text-white border border-gray-500 aspect-square h-full rounded-full transform transition duration-150 ease-in-out   hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-gray-400"> = </button>
                 </div>
             </div>
-            <div id="history" class="hidden md:flex flex-col w-full h-44 md:h-full bg-gray-900 p-4 gap-2 px-2 border border-gray-600 rounded-xl shadow-md overflow-y-auto">
+            
+            <div id="history" class="hidden md:flex flex-col w-full h-44 md:h-full bg-white text-gray-800 dark:text-gray-300 dark:bg-zinc-900 p-4 gap-2 px-2 border border-gray-500 rounded-xl shadow-md overflow-y-auto">
                 <!-- History buttons will be appended here dynamically -->
             </div>
-
-            
-            
-            
-            
+            <!-- Add this button for mobile devices -->
+            <button id="toggleHistory" class="md:hidden text-2xl p-2 rounded-md bg-zinc-800 border border-gray-500 shadow-sm transition transform duration-150 ease-in-out">
+                Memory
+            </button>
         </div>
 
-        <script src='script.js'>
-
-        </script>
+        <script src='script.js'></script>
     </body>
 </html>

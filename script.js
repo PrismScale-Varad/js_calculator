@@ -26,7 +26,7 @@ function calculateResult() {
 
         if (rawResult.toString().length > 10) {
             // If the result exceeds 10 digits, use scientific notation
-            currentResult = rawResult.toExponential(5); // Use 5 digits for precision in scientific notation
+            currentResult = rawResult.toExponential(4); // Use 5 digits for precision in scientific notation
         } else {
             // Limit to 10 digits for standard display
             currentResult = parseFloat(rawResult.toPrecision(10)).toString();
@@ -78,7 +78,7 @@ function displayHistory() {
         // Loop through the history array and create buttons
         history.forEach(entry => {
             const historyButton = document.createElement('button');
-            historyButton.classList.add('text-right', 'w-full', 'text-xl', 'bg-gray-800', 'p-2', 'rounded-md');
+            historyButton.classList.add('text-right', 'w-full', 'text-xl', 'font-mono', 'dark:bg-zinc-950', 'p-4', 'px-8', 'rounded-full', 'shadow-md', 'border', 'border-gray-600');
             historyButton.textContent = entry;
             historyButton.onclick = function() {
                 currentExpression = entry.split(' = ')[0];
