@@ -78,7 +78,7 @@ function displayHistory() {
         // Loop through the history array and create buttons
         history.forEach(entry => {
             const historyButton = document.createElement('button');
-            historyButton.classList.add('text-right', 'w-full', 'text-xl', 'font-mono', 'bg-zinc-950', 'p-4', 'px-8', 'rounded-full', 'shadow-md', 'border', 'border-gray-600');
+            historyButton.classList.add('text-right', 'w-full', 'text-xl', 'font-mono', 'bg-zinc-950', 'p-4', 'px-8', 'rounded-full', 'shadow-md', 'border', 'border-gray-600', 'hover:bg-zinc-900');
             historyButton.textContent = entry;
             historyButton.onclick = function() {
                 currentExpression = entry.split(' = ')[0];
