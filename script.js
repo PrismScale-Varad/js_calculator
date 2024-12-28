@@ -24,9 +24,9 @@ function calculateResult() {
         let expr = currentExpression.replace(/%/g, '*0.01*');
         let rawResult = eval(expr); // Evaluate the expression
 
-        if (rawResult.toString().length > 10) {
+        if (rawResult.toString().length > 9) {
             // If the result exceeds 10 digits, use scientific notation
-            currentResult = rawResult.toExponential(4); // Use 5 digits for precision in scientific notation
+            currentResult = rawResult.toExponential(3); // Use 5 digits for precision in scientific notation
         } else {
             // Limit to 10 digits for standard display
             currentResult = parseFloat(rawResult.toPrecision(10)).toString();
