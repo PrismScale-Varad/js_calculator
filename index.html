@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row rounded-b-3xl gap-2 max-w-screen-md w-full h-96 p-8 px-12 bg-gray-700 self-center border border-gray-600 shadow-lg">
+        <div class="flex flex-col md:flex-row rounded-b-3xl gap-2 max-w-screen-md w-full h-full md:h-96 p-8 px-12 bg-gray-700 self-center border border-gray-600 shadow-lg">
             <div class="flex flex-row w-full">
                 <div id="numbers" class="grid grid-cols-3 grid-rows-5 h-full gap-1 font-serif text-3xl">
                     <button onclick="appendValue('(')" class="bg-gray-900 border border-gray-600 aspect-square h-full rounded-md transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> (  ) </button>
@@ -51,7 +51,7 @@
                     <button onclick="saveResult()" class="bg-gray-950 border border-gray-600 text-2xl aspect-square h-full rounded-2xl transform transition duration-150 ease-in-out hover:scale-110 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"> = </button>
                 </div>
             </div>
-            <div id="history" class="flex flex-col w-full h-full bg-gray-900 p-4 gap-2 px-2 border border-gray-600 rounded-xl shadow-md overflow-y-auto">
+            <div id="history" class="flex flex-col w-full h-96 md:h-full bg-gray-900 p-4 gap-2 px-2 border border-gray-600 rounded-xl shadow-md overflow-y-auto">
                 <!-- History buttons will be appended here dynamically -->
             </div>
         </div>
