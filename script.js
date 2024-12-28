@@ -22,9 +22,17 @@ function clearDisplay() {
 function calculateResult() {
     try {
         let expr = currentExpression.replace(/%/g, '*0.01*');
-        currentResult = eval(expr).toString();
+        let rawResult = eval(expr); // Evaluate the expression
+
+        if (rawResult.toString().length > 10) {
+            // If the result exceeds 10 digits, use scientific notation
+            currentResult = rawResult.toExponential(5); // Use 5 digits for precision in scientific notation
+        } else {
+            // Limit to 10 digits for standard display
+            currentResult = parseFloat(rawResult.toPrecision(10)).toString();
+        }
     } catch (error) {
-        currentResult = 'Error';
+        currentResult = 'Error'; // Handle any evaluation errors
     }
     updateDisplay();
 }
@@ -81,5 +89,16 @@ function displayHistory() {
         });
 }
     
-    // Call displayHistory() on page load to populate history
+
+document.getElementById('toggleHistory').addEventListener('click', () => {
+    const history = document.getElementById('history');
+    if (history.classList.contains('hidden')) {
+        history.classList.remove('hidden');
+        history.classList.add('flex');
+    } else {
+        history.classList.add('hidden');
+    }
+});
+
+// Call displayHistory() on page load to populate history
 window.onload = displayHistory;
